@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.14.2
+# v0.14.4
 
 using Markdown
 using InteractiveUtils
@@ -10,6 +10,7 @@ begin
 	using Plots
 	using SparseArrays
     using LinearAlgebra
+	using Statistics
 end
 
 # ╔═╡ 4dce2ef1-30dd-45db-90f4-c3e8597089a6
@@ -30,18 +31,17 @@ pluto-helpbox {
 function initCond(xgrid, sType, μ, σ, p)
 	
     if(sType == 1) #moving gaussian
-       return Complex.(1/(σ*sqrt(2*π)) * exp.(p*im*xgrid - ((xgrid .- μ) .^2 ./ (4*σ^2))))
+       return Complex.(1/(σ*sqrt(2*π))^0.5 * exp.(p*im*xgrid - ((xgrid .- μ) .^2 ./ (4*σ^2))))
 	end
 end
 
 # ╔═╡ 1fc331e4-954a-11eb-28ba-d17a94789af9
-function schrodingerEquation(dx::Float64, xi::Float64, xf::Float64, m::Int64, dt::Float64, mass::Float64, momentum::Float64, potential)
+function schrodingerEquation(dx::Float64, xi::Float64, xf::Float64, m::Int64, dt::Float64, mass::Float64, wavepacket::Tuple{Float64, Float64, Float64}, potential)
     
     xgrid = collect(xi:dx:xf) #discretized spatial grid
     n = length(xgrid)
 	
 	V = potential.(xgrid)
-	#maxV = max.(V)
 	
 	#CREATING EVOLUTION MATRIX
 	diag = ones(Complex, n)
@@ -54,31 +54,40 @@ function schrodingerEquation(dx::Float64, xi::Float64, xf::Float64, m::Int64, dt
 	
     #INITIAL CONDITIONS
 	ψ = zeros(Complex, (n, m))
-    ψ[:, 1] = initCond(xgrid, 1, -0.0, 2, momentum)
+    ψ[:, 1] = initCond(xgrid, 1, wavepacket...)
     
 	#TIME EVOLUTION LOOP
     for j in 1:(m-1)
 		ψ[:, j+1] = M₁\(M₂*ψ[:, j])
     end
     
-	
-    #GIF CREATION
-    anim = @gif for j = 1:10:m
-		plot(xgrid, abs2.(ψ[:, j]), ylim = (-0.05, 0.1))
-    end
-    
-    return anim
+    return (xgrid, V, ψ)
 end
 
 # ╔═╡ 270699fa-954a-11eb-3e5b-f1dbdaca0fad
 function V(x)
-	#return (x > -5 && x < 5) ? 3 : 0.0
+	return (x > -5.0 && x < 5.0) ? 2.5 : 0.0
 	#return 0
-	return 0.05*x^2
+	#return 0.05*x^2
 end
 
+# ╔═╡ 5f14351a-3c56-4d0c-9a79-0d71cbc8eef9
+function plotSchrodinger(xgrid, V, ψ, m)
+	#GIF CREATION
+    anim = @gif for j = 1:10:m
+		plot(xgrid, abs2.(ψ[:, j]), ylim = (-0.05, 0.5), label = "")
+		plot!(xgrid, V, color = :black, label = "")
+    end
+end
+
+# ╔═╡ 2344c2b1-280a-46bf-9e82-c7a15db18ead
+m = 2000
+
 # ╔═╡ b15fff98-22f9-4689-957f-348dbd5dd02d
-schrodingerEquation(0.01, -25.0, 25.0, 1000, 0.025, 1.0, 0.0, V)
+data = schrodingerEquation(0.01, -35.0, 35.0, m, 0.025, 5.0, (-25.0, 2.0, 6.0), V);
+
+# ╔═╡ a33fa264-6920-459b-964b-88b453600800
+plotSchrodinger(data..., m)
 
 # ╔═╡ Cell order:
 # ╟─4dce2ef1-30dd-45db-90f4-c3e8597089a6
@@ -86,4 +95,7 @@ schrodingerEquation(0.01, -25.0, 25.0, 1000, 0.025, 1.0, 0.0, V)
 # ╠═208cbf8a-954a-11eb-31c8-014c1b072be0
 # ╠═1fc331e4-954a-11eb-28ba-d17a94789af9
 # ╠═270699fa-954a-11eb-3e5b-f1dbdaca0fad
+# ╠═5f14351a-3c56-4d0c-9a79-0d71cbc8eef9
 # ╠═b15fff98-22f9-4689-957f-348dbd5dd02d
+# ╠═2344c2b1-280a-46bf-9e82-c7a15db18ead
+# ╠═a33fa264-6920-459b-964b-88b453600800
