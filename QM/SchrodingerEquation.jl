@@ -97,6 +97,11 @@ $$\boxed{\alpha = \frac{i\Delta t}{4m(\Delta x)^2}}
 
 """
 
+# ╔═╡ dafdc30d-2568-490a-8d4b-eec06df17f72
+md""" #### Boundary Condition
+By virtue of this specific construction of the evolution matrices, the system has fixed boundary conditions ($\psi(x) = 0$ at the boundaries). This effectively emulates an infinite wall on either sides, resulting in a particle-in-a-box system in the absence of any other potential inside.
+"""
+
 # ╔═╡ e9d1f155-19a4-40d2-89e7-3b21b7ef856d
 md"#### Initial Condition"
 
@@ -176,7 +181,7 @@ end
 md"## Simulation results"
 
 # ╔═╡ a32b0c6a-895f-4584-90ba-5f17a34a26f2
-nSteps = 2250
+nSteps = 2200
 
 # ╔═╡ b15fff98-22f9-4689-957f-348dbd5dd02d
 data = schrodingerEquation(0.01, -40.0, 40.0, nSteps, 0.025, 5.0, (-25.0, 2.0, 6.0), V);
@@ -196,6 +201,7 @@ plotRealImg(data..., nSteps)
 # ╟─625ad5be-5f13-4bd5-afbf-d56e4d99b598
 # ╟─27f27028-83cb-4b44-86af-435f018169d2
 # ╟─16911457-303f-4f3a-b64d-5ea72ac3b040
+# ╟─dafdc30d-2568-490a-8d4b-eec06df17f72
 # ╟─e9d1f155-19a4-40d2-89e7-3b21b7ef856d
 # ╠═208cbf8a-954a-11eb-31c8-014c1b072be0
 # ╟─fa59ac6f-1e55-4bd7-955e-a71703b54a2b
