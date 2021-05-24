@@ -11,4 +11,4 @@ These analysis have been performed using Julia, and the notebooks were created u
 
 # Derivations 
 
-- [Schrodinger Equation under a Galilean transformation](/docs/Galilean_boost_of_TDSE.html)
+- [Schrodinger Equation under a Galilean transformation](/docs/Galilean_Boost_of_TDSE.html)
