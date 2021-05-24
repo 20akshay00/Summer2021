@@ -36,9 +36,9 @@ The TDSE in 1D is given by
 
 $$i\hbar\frac{\partial \psi(x, \ t)}{\partial t} = \left(-\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + V(x) \right) \psi(x, \ t)$$ 
 
-If we perform a wick rotation ($$t \to i\tau$$), the equation now resembles a heat/diffusion equation:
+If we perform a wick rotation ($$t \to -i\tau$$), the equation now resembles a heat/diffusion equation:
 
-$$\frac{\partial \psi(x, \ i\tau)}{\partial \tau} = \left(-\frac{\hbar}{2m} \frac{\partial^2}{\partial x^2} + \frac{1}{\hbar}V(x) \right) \psi(x, \ i\tau)
+$$\frac{\partial \psi(x, \ i\tau)}{\partial \tau} = \left(\frac{\hbar}{2m} \frac{\partial^2}{\partial x^2} - \frac{1}{\hbar}V(x) \right) \psi(x, \ i\tau)
 \hspace{1cm}
 \longleftrightarrow
 \hspace{1cm}
@@ -161,7 +161,7 @@ md"""
 ###### Calculations
 For a bounded system, the hamiltonian H will have a spectrum of bound-state eigen-vectors \{$\psi_k$\} with energy eigen-values \{$E_k$\}. Any initial wave-function can be written as a linear combination of these eigen-vectors which form a complete basis;
 
-$$\phi(x, 0) = \sum_{k}c_i \cdot \psi_k(x)$$
+$$\phi(x, 0) = \sum_{k}c_k \cdot \psi_k(x)$$
 
 The time evolution can then be written as:
 
@@ -173,9 +173,9 @@ $$\phi(x, t) = \sum_{k}c_k \cdot \psi_k(x) \cdot e^{-iE_kt/\hbar}$$
 md"""
 When we switch to imaginary time ($t \to -i\tau$), the solution goes from oscillatory to exponential decay:
 
-$$\phi(x, \tau) = \sum_{i}c_i \cdot \psi_i(x) \cdot e^{-E_k\tau/\hbar}$$
+$$\phi(x, \tau) = \sum_{k}c_k \cdot \psi_k(x) \cdot e^{-E_k\tau/\hbar}$$
 
-$$\implies \phi(x, \tau) = e^{-E_0\tau/\hbar}\cdot (c_0\cdot \psi_0(x) + \sum_{i \neq 0}c_i \cdot \psi_i(x) \cdot e^{(E_0-E_k)\tau/\hbar})$$
+$$\implies \phi(x, \tau) = e^{-E_0\tau/\hbar}\cdot (c_0\cdot \psi_0(x) + \sum_{k \neq 0}c_k \cdot \psi_k(x) \cdot e^{(E_0-E_k)\tau/\hbar})$$
 
 As a result, $|\psi|^2$ is no longer preserved and we have to re-normalize the wave-function every timestep.
 
