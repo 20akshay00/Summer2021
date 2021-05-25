@@ -81,9 +81,9 @@ $$\left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x'^2} + V'(x', t') \righ
 
 $$\left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x, t) \right ] e^{-if(x,t)}\psi(x, t)= i\hbar\left[\frac{\partial }{\partial t} + v\frac{\partial }{\partial x} \right] e^{-if(x,t)}\psi(x, t)$$
 
-$$\frac{-\hbar^2}{2m} \left [ (\psi_x - if'\psi)e^{-if} \right ]' = i\hbar e^{-if}\left[\psi_t - if_t\psi + v\psi_x - ivf_x\psi \right]$$
+$$\frac{-\hbar^2}{2m} \left [ (\psi_x - if'\psi)\cdot e^{-if} \right ]' + V\psi \cdot e^{-if} = i\hbar\left[\psi_t - if_t\psi + v\psi_x - ivf_x\psi \right] \cdot e^{-if}$$
 
-$$\frac{-\hbar^2}{2m} \left [\psi_{xx} - 2if_x\psi_x + (f_x^2 - if_{xx})\psi \right]e^{-if}= i\hbar e^{-if}\left[\psi_t - if_t\psi + v\psi_x - ivf_x\psi \right]$$
+$$\frac{-\hbar^2}{2m} \left [\psi_{xx} - 2if_x\psi_x + (f_x^2 - if_{xx})\psi \right] \cdot \cancel{e^{-if}} + V\psi \cdot \cancel{e^{-if}} = i\hbar \left[\psi_t - if_t\psi + v\psi_x - ivf_x\psi \right] \cdot \cancel{e^{-if}}$$
 
 $$\frac{-\hbar^2}{2m}\psi_{xx} + V\psi + \left[-\frac{\hbar^2}{2m}(-2if_x\psi_x + (f_x^2-if_{xx})\psi)\right] = i\hbar\psi_t + i\hbar\left[ -if_t\psi + v\psi_x - ivf_x\psi\right]$$
 
