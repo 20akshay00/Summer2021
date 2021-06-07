@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.14.4
+# v0.14.7
 
 using Markdown
 using InteractiveUtils
@@ -23,7 +23,7 @@ md"### Galilean transformation of the Schrodinger Equation"
 
 # ╔═╡ 4b609a93-607e-4ab5-89c9-17225412d10c
 md"""
-We would expect that the form of the TDSE is invariant under a galilean transformation. Let us see whether we can arrive at this result starting from the equation in one frame, and performing the transformations.
+We would expect that the form of the TDSE is preserved under a galilean transformation. Let us see whether we can arrive at this result starting from the equation in one frame, and performing the transformations.
 """
 
 # ╔═╡ 0b0a4161-15f6-41f5-b4d1-ecb43b08b828
@@ -38,29 +38,29 @@ md"""
 md"""
 We'll work in 1D for simplicity. Let us take a frame of reference $F$ with co-ordinates $x$ and $t$, and another frame $F'$ with co-ordinates $x'$ and $t'$ such that $F'$ is moving at a constant velocity $v$ relative to $F$. The co-ordinates are related by a galilean boost like so:
 
-$$x = x' + vt'  \hspace{2cm} t = t'$$
+$$x' = x + vt  \hspace{2cm} t' = t$$
 
-The potential energy is given by $V(x, t)$ in $F$, and by $V'(x',t')$ in $F'$, with the assumption;
+The potential energy is given by $V(x, t)$ in $F$, and by $V'(x,t)$ in $F'$, which are related in the following way:
 
-$$V'(x',t') = V(x, t)$$
+$$V'(x,t) = V(x', t')$$
 
-In $F'$, the TDSE has the form 
+In $F$, the TDSE has the form 
 
-$$\left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x'^2} + V'(x', t') \right ] \psi'(x', t')= i\hbar\frac{\partial }{\partial t'} \psi'(x', t')$$
+$$\left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x, t) \right ] \psi(x, t)= i\hbar\frac{\partial }{\partial t} \psi(x, t)$$
 
-where, $\psi'(x', t')$ is the wavefunction in $F'$. In $F$, the wavefunction is $\psi(x, t)$ and we find the equation it satisfies by transforming the operators in the above equation. 
+where, $\psi(x, t)$ is the wavefunction in $F$. In $F'$, the wavefunction is $\psi'(x, t)$ and we find the equation it satisfies by transforming the operators in the above equation. 
 
-$$\frac{\partial}{\partial x'} = \frac{\partial x}{\partial x'}\frac{\partial}{\partial x} + \frac{\partial t}{\partial x'}\frac{\partial}{\partial t} = \frac{\partial}{\partial x}$$
+$$\frac{\partial}{\partial x} = \frac{\partial x'}{\partial x}\frac{\partial}{\partial x'} + \frac{\partial t'}{\partial x}\frac{\partial}{\partial t'} = \frac{\partial}{\partial x'}$$
 
-$$\frac{\partial}{\partial t'} = \frac{\partial x}{\partial t'}\frac{\partial}{\partial x} + \frac{\partial t}{\partial t'}\frac{\partial}{\partial t} = \frac{\partial}{\partial t} + v \frac{\partial}{\partial x}$$
+$$\frac{\partial}{\partial t} = \frac{\partial x'}{\partial t}\frac{\partial}{\partial x'} + \frac{\partial t'}{\partial t}\frac{\partial}{\partial t'} = \frac{\partial}{\partial t'} + v \frac{\partial}{\partial x'}$$
 
 We also have another piece of information; since the jacobian of this transformation is 1, we know that the probability density at a specific point must be the same in $F$ and $F'$; 
 
-$$|\psi(x, t)|^2 = |\psi'(x',t')|^2$$
+$$|\psi'(x, t)|^2 = |\psi(x',t')|^2$$
 
-$$\implies \psi(x,t) = e^{if(x,t)}\psi'(x',t')$$
+$$\implies \psi'(x,t) = e^{if(x',t')}\psi(x',t')$$
 
-With this, we can substitute these new operators and wavefunctions into the TDSE in $F'$.
+With this, we can substitute these new operators and wavefunctions into the TDSE in $F$.
 """
 
 # ╔═╡ 3dc47f24-51a7-496b-8be0-44b00ed1d199
@@ -76,10 +76,10 @@ md"##### Substituting and re-arranging terms"
 # ╔═╡ 649f2a36-db54-400d-a38b-3986383ea681
 md"""
 
-$$\left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x'^2} + V'(x', t') \right ] \psi'(x', t')= i\hbar\frac{\partial }{\partial t'} \psi'(x', t')$$
+$$\left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x, t) \right ] \psi(x, t)= i\hbar\frac{\partial }{\partial t} \psi(x, t)$$
 
 
-$$\left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x, t) \right ] e^{-if(x,t)}\psi(x, t)= i\hbar\left[\frac{\partial }{\partial t} + v\frac{\partial }{\partial x} \right] e^{-if(x,t)}\psi(x, t)$$
+$$\left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x, t) \right ] e^{-if(x',t')}\psi'(x, t)= i\hbar\left[\frac{\partial }{\partial t} + v\frac{\partial }{\partial x} \right] e^{-if(x,t)}\psi(x, t)$$
 
 $$\frac{-\hbar^2}{2m} \left [ (\psi_x - if'\psi)\cdot e^{-if} \right ]' + V\psi \cdot e^{-if} = i\hbar\left[\psi_t - if_t\psi + v\psi_x - ivf_x\psi \right] \cdot e^{-if}$$
 
@@ -127,12 +127,12 @@ where the $\psi\to\psi'$ transforms like so:
 
 $$\psi'(x',t') = e^{-\frac{i}{\hbar}\left[mvx - \frac{1}{2}mv^2t\right]}\cdot \psi(x,t)$$
 
-The existence of a solution $f(x,t)$ for imposing this form invariance of the TDSE indicates the galilean invariance of this equation.
+The existence of a solution $f(x,t)$ for imposing this form invariance of the TDSE indicates the galilean covariance of this equation.
 """
 
 # ╔═╡ Cell order:
 # ╟─b437fb1a-f1a0-4be8-949d-23bfdd4827ce
-# ╟─4a1f77e0-bc80-11eb-3c3b-931ce8024e18
+# ╠═4a1f77e0-bc80-11eb-3c3b-931ce8024e18
 # ╟─4b609a93-607e-4ab5-89c9-17225412d10c
 # ╟─0b0a4161-15f6-41f5-b4d1-ecb43b08b828
 # ╟─b32b5855-b7ab-4eef-8ae9-78d958f089c8
