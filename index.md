@@ -11,6 +11,7 @@ These analysis have been performed using Julia, and the notebooks were created u
 
 # Derivations 
 
-- Schrodinger Equation under a Galilean transformation
+- [Schrodinger Equation under a Galilean transformation](/docs/GalileanTransformation.html)
 
-- [Schrodinger Equation from a rotating frame of refernece](/docs/RotatingFrame.html)
+- [Schrodinger Equation from a rotating frame of reference](/docs/RotatingFrame.html)
+
