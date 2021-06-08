@@ -32,9 +32,12 @@ $$
 
 We can now find the transformation of the derivatives under the this galilean boost:
 $$
-\frac{\partial}{\partial x} = \frac{\partial x'}{\partial x}\frac{\partial}{\partial x'} + \frac{\partial t'}{\partial x}\frac{\partial}{\partial t'} = \frac{\partial}{\partial x'}
+\begin{align*}
+\frac{\partial}{\partial x} &= \frac{\partial x'}{\partial x}\frac{\partial}{\partial x'} + \frac{\partial t'}{\partial x}\frac{\partial}{\partial t'} = \frac{\partial}{\partial x'}
 \\
-\frac{\partial}{\partial t} = \frac{\partial x'}{\partial t}\frac{\partial}{\partial x'} + \frac{\partial t'}{\partial t}\frac{\partial}{\partial t'} = \frac{\partial}{\partial t'} + v \frac{\partial}{\partial x'}
+\\
+\frac{\partial}{\partial t} &= \frac{\partial x'}{\partial t}\frac{\partial}{\partial x'} + \frac{\partial t'}{\partial t}\frac{\partial}{\partial t'} = \frac{\partial}{\partial t'} + v \frac{\partial}{\partial x'}
+\end{align*}
 $$
 
 We still do not know the form of f(x', t'),  but if the TDSE is galilean covariant, the consistency of the equations in the two frames will uniquely determine a form of this function, proving that the equation is indeed covariant under this transformation.
@@ -52,23 +55,21 @@ $$
 We will now drop the labels (prime) for ease of writing, since all quantities are represented in terms of $(x', t')$ which can just as well be written as the variables $(x, t)$.
 
 $$
-\equiv \left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x, t) \right ] e^{-if(x,t)}\psi(x, t)= i\hbar\left[\frac{\partial }{\partial t} + v\frac{\partial }{\partial x} \right] e^{-if(x,t)}\psi(x, t)
+\begin{align*}
+\left [ \frac{-\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x, t) \right ] e^{-if(x,t)}\psi(x, t) &= i\hbar\left[\frac{\partial }{\partial t} + v\frac{\partial }{\partial x} \right] e^{-if(x,t)}\psi(x, t)
+\\
+\frac{-\hbar^2}{2m} \left [ (\psi_x - if'\psi)\cdot e^{-if} \right ]' + V\psi \cdot e^{-if} &= i\hbar\left[\psi_t - if_t\psi + v\psi_x - ivf_x\psi \right] \cdot e^{-if}
+\\
+\frac{-\hbar^2}{2m} \left [\psi_{xx} - 2if_x\psi_x + (f_x^2 - if_{xx})\psi \right] \cdot \cancel{e^{-if}} + V\psi \cdot \cancel{e^{-if}} &= i\hbar \left[\psi_t - if_t\psi + v\psi_x - ivf_x\psi \right] \cdot \cancel{e^{-if}}
+\\
+\frac{-\hbar^2}{2m}\psi_{xx} + V\psi + \left[-\frac{\hbar^2}{2m}(-2if_x\psi_x + (f_x^2-if_{xx})\psi)\right] &= i\hbar\psi_t + i\hbar\left[ -if_t\psi + v\psi_x - ivf_x\psi\right]
+\end{align*}
 $$
 
-$$
-\frac{-\hbar^2}{2m} \left [ (\psi_x - if'\psi)\cdot e^{-if} \right ]' + V\psi \cdot e^{-if} = i\hbar\left[\psi_t - if_t\psi + v\psi_x - ivf_x\psi \right] \cdot e^{-if}
-$$
 
 $$
-\frac{-\hbar^2}{2m} \left [\psi_{xx} - 2if_x\psi_x + (f_x^2 - if_{xx})\psi \right] \cdot \cancel{e^{-if}} + V\psi \cdot \cancel{e^{-if}} = i\hbar \left[\psi_t - if_t\psi + v\psi_x - ivf_x\psi \right] \cdot \cancel{e^{-if}}
-$$
-
-$$
-\frac{-\hbar^2}{2m}\psi_{xx} + V\psi + \left[-\frac{\hbar^2}{2m}(-2if_x\psi_x + (f_x^2-if_{xx})\psi)\right] = i\hbar\psi_t + i\hbar\left[ -if_t\psi + v\psi_x - ivf_x\psi\right]
-$$
-
-$$
-\boxed{\underbrace{\frac{-\hbar^2}{2m}\psi_{xx} + V\psi = i\hbar\psi_t}_{\text{TDSE in frame F}} - \underbrace{\left [ -\frac{\hbar^2}{2m}f_x^2 + \frac{i\hbar}{2m}f_{xx} - \hbar f_t - \hbar vf_x\right]\psi - \left[\frac{i\hbar^2}{m}f_x - i\hbar v \right]\psi_x}_{\text{must vanish for arbitrary }\psi}}
+\\
+\implies \boxed{\underbrace{\frac{-\hbar^2}{2m}\psi_{xx} + V\psi = i\hbar\psi_t}_{\text{TDSE in frame F}} - \underbrace{\left [ -\frac{\hbar^2}{2m}f_x^2 + \frac{i\hbar}{2m}f_{xx} - \hbar f_t - \hbar vf_x\right]\psi - \left[\frac{i\hbar^2}{m}f_x - i\hbar v \right]\psi_x}_{\text{must vanish for arbitrary }\psi}}
 $$
 
 ---
