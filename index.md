@@ -4,10 +4,8 @@ These analysis have been performed using Julia, and the notebooks were created u
 # Explorations
 
 - [Solving the 1D TDSE using Crank-Nicholson scheme](/docs/SchrodingerEquation.html)
-
 - [Relating the Schrodinger Equation and the Heat Equation](/docs/TDSE_Heat.html)
-
-- Solving the Heat Equation using spectral methods
+- [Exploring the 1D Gross-Pitaevski equation](/docs/GPE_1D.html)
 
 # Derivations 
 
